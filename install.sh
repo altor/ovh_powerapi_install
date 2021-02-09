@@ -10,7 +10,8 @@ apt update
 apt upgrade -y
 
 # install linux kernel `4.18.0-25`
-apt install -y linux-image-4.18.0-25-generic linux-modules-4.18.0-25-generic
+apt install -y linux-image-4.18.0-25-generic linux-modules-4.18.0-25-generic linux-modules-extra-4.18.0-25-generic
+modprobe intel_rapl
 
 # build and install a patched version of `libpfm`
 apt install -y build-essential git devscripts debhelper dpatch python3-dev libncurses-dev swig
