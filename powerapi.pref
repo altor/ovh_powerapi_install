@@ -1,0 +1,16 @@
+Package: *
+Pin: release n=xenial
+Pin-Priority: 500
+
+Package: *
+Pin: release n=bionic
+Pin-Priority: -10
+
+Package: linux-image-4.18.0-25-generic linux-modules-4.18.0-25-generic 
+Pin: release n=bionic
+Pin-Priority: 600
+
+Package: libczmq-dev libczmq4
+Pin: release n=bionic
+Pin-Priority: 600
+

@@ -1,0 +1,4 @@
+# bionic
+deb http://fr.archive.ubuntu.com/ubuntu/ bionic main restricted universe
+deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe
+deb http://fr.archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe
