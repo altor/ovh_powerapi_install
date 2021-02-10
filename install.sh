@@ -33,10 +33,12 @@ make -j $(getconf _NPROCESSORS_ONLN)
 mv hwpc-sensor /usr/bin/
 
 # install smartwatts
-apt install -y python3-pip libblas-dev liblapack-dev libatlas-base-dev gfortran
-python3 -m pip install setuptools --upgrade
+apt install -y libblas-dev liblapack-dev libatlas-base-dev gfortran
+wget https://bootstrap.pypa.io/3.5/get-pip.py -O $WORK_DIR/get-pip.py
+python3 $WORK_DIR/get-pip.py
+python3 -m pip install --upgrade "setuptools<51.3"
 git clone -b master-3.5 https://github.com/powerapi-ng/powerapi $WORK_DIR/powerapi
 python3 -m pip install $WORK_DIR/powerapi
 
-git clone -b master-3.5 https://github.com/powerapi-ng/smartwatts-formula $WORK_DIR/powerapi
+git clone -b master-3.5 https://github.com/powerapi-ng/smartwatts-formula $WORK_DIR/smartwatts-formula
 python3 -m pip install $WORK_DIR/smartwatts-formula
