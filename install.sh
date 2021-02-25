@@ -32,13 +32,27 @@ cmake -DCMAKE_BUILD_TYPE="${Release}" -DWITH_MONGODB="OFF" ..
 make -j $(getconf _NPROCESSORS_ONLN)
 mv hwpc-sensor /usr/bin/
 
+# install python3.8
+wget https://www.python.org/ftp/python/3.8.7/Python-3.8.7.tgz -O $WORK_DIR/Python-3.8.7.tgz
+cd $WORK_DIR
+tar -xvf Python-3.8.7.tgz
+cd Python-3.8.7
+./configure
+make -j 40
+make install
+
+apt install python3-pip
+
+python3.8 -m pip install --upgrade pip
+python3.8 -m pip install --upgrade setuptools
+
 # install smartwatts
 apt install -y libblas-dev liblapack-dev libatlas-base-dev gfortran
-wget https://bootstrap.pypa.io/3.5/get-pip.py -O $WORK_DIR/get-pip.py
-python3 $WORK_DIR/get-pip.py
-python3 -m pip install --upgrade "setuptools<51.3"
-git clone -b master-3.5 https://github.com/powerapi-ng/powerapi $WORK_DIR/powerapi
-python3 -m pip install $WORK_DIR/powerapi
+git clone https://github.com/powerapi-ng/powerapi $WORK_DIR/powerapi
+python3.8 -m pip install $WORK_DIR/powerapi
 
-git clone -b master-3.5 https://github.com/powerapi-ng/smartwatts-formula $WORK_DIR/smartwatts-formula
-python3 -m pip install $WORK_DIR/smartwatts-formula
+git clone https://github.com/powerapi-ng/smartwatts-formula $WORK_DIR/smartwatts-formula
+python3.8 -m pip install $WORK_DIR/smartwatts-formula
+
+# install tools
+apt install cgroups-tools
