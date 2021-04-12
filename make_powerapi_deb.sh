@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# install build dependencies
-apt update
-apt install -y python3 python3-pip python3-stdeb dh-python
-python3 -m pip install .
-
-VERSION=$(python3 -c "import os, powerapi; print(powerapi.__version__)")
+# clone repository
+git clone https://github.com/powerapi-ng/powerapi.git /tmp/powerapi
+cd /tmp/powerapi
 
 # remove testing
 rm -R ./tests
@@ -19,11 +16,14 @@ sed -i 's/pytest >=3.9.2//g' setup.cfg
 sed -i 's/pytest-asyncio >=0.14.0//g' setup.cfg
 sed -i 's/mock >=2.0//g' setup.cfg
 
-
-# remove type hint
+# remove type hint and change python required version to 3.7
 sed -i 's/ *-> *[[:alnum:]]*Report//g' $(find powerapi/ -name "*.py")
 sed -i 's/from __future__ import annotations//g' $(find powerapi/ -name "*.py")
 sed -i 's/python_requires = >= 3\.[0-9]/python_requires = >= 3.7/g' setup.cfg
+
+# install build dependencies
+python3 -m pip install .
+VERSION=$(python3 -c "import os, powerapi; print(powerapi.__version__)")
 
 # create source package 
 python3 setup.py --command-packages=stdeb.command sdist_dsc
@@ -32,4 +32,5 @@ sed -i '/Depends: ${misc:Depends}, ${python3:Depends}/a Suggests: python3-pymong
 
 cd ./deb_dist/powerapi-$VERSION
 dpkg-buildpackage
-cd ../..
+mv ../python3-powerapi_$VERSION-1_all.deb /srv/
+

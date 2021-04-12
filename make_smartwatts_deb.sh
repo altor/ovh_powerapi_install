@@ -1,10 +1,12 @@
 #!/bin/bash
 
+# clone repository
+git clone https://github.com/powerapi-ng/smartwatts-formula.git /tmp/smartwatts
+cd /tmp/smartwatts
+
 VERSION=$(python3 -c "import os, smartwatts; print(smartwatts.__version__)")
 
 # install build dependencies
-apt update
-apt install -y python3 python3-pip python3-stdeb dh-python
 python3 -m pip install .
 
 # remove testing
@@ -17,6 +19,6 @@ sed -i 's/Depends: ${misc:Depends}, ${python3:Depends}/Depends: python3-powerapi
 # build binary package
 cd ./deb_dist/smartwatts-$VERSION
 dpkg-buildpackage
-cd ../..
+mv ../python3-smartwatts_$VERSION-1_all.deb /srv/
 
 

@@ -4,9 +4,8 @@ the `install.sh` script :
 
 - configure `apt` to use bionic repository only for PowerAPI specific packages
 - install linux kernel `4.18.0-25`
-- build and install a patched version of `libpfm`
-- build and install `hwpc-sensor`
-- install `python3.8` and `smartwatts` formula
+- install `python3.8`
+- build and install `hwpc-sensor`, `powerapi` and `smartwatts` package
 
 # launch smartwatts
 
