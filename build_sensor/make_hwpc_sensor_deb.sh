@@ -18,11 +18,11 @@ cp /tmp/hwpc-sensor/build/hwpc-sensor /tmp/build_deb/hwpc-sensor
 # create package skeleton
 cd /tmp/build_deb
 mkdir -p hwpc-sensor-$VERSION/DEBIAN
-cp control hwpc-sensor-$VERSION/DEBIAN/
+cp /srv/control hwpc-sensor-$VERSION/DEBIAN/
 
 mkdir -p hwpc-sensor-$VERSION/usr/bin/
-cp hwpc-sensor hwpc-sensor-$VERSION/usr/bin/hwpc-sensor-bin
-cp launch_sensor.sh hwpc-sensor-$VERSION/usr/bin/hwpc-sensor
+cp /tmp/hwpc-sensor/build/hwpc-sensor hwpc-sensor-$VERSION/usr/bin/hwpc-sensor-bin
+cp /srv/launch_sensor.sh hwpc-sensor-$VERSION/usr/bin/hwpc-sensor
 
 # build package
 dpkg-deb --build hwpc-sensor-$VERSION

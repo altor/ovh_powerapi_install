@@ -20,7 +20,7 @@ docker run -v $(pwd)/build_sensor:/srv --rm --name builder package_builder:lates
 docker run -v $(pwd):/srv --rm --name builder package_builder:latest /srv/make_powerapi_deb.sh
 docker run -v $(pwd):/srv --rm --name builder package_builder:latest /srv/make_smartwatts_deb.sh
 
-mv ./*.deb/$WORK_DIR/
+mv ./*.deb $WORK_DIR/
 mv build_sensor/*.deb $WORK_DIR/
 
 # install dependencies
@@ -29,6 +29,7 @@ mv build_sensor/*.deb $WORK_DIR/
 apt install -y libczmq4 libbson-1.0
 
 ## python3.7 & utils
+apt install -y zlib1g-dev
 wget https://www.python.org/ftp/python/3.7.10/Python-3.7.10.tgz -O $WORK_DIR/Python-3.7.10.tgz
 cd $WORK_DIR
 tar -xvf Python-3.7.10.tgz
@@ -36,11 +37,6 @@ cd Python-3.7.10
 ./configure
 make -j 40
 make install
-
-apt install python3-pip
-
-python3.7 -m pip install --upgrade pip
-python3.7 -m pip install --upgrade setuptools
 
 ## powerapi dependencies
 apt install -y python3-numpy python3-setproctitle python3-zmq python3-pymongo python3-prometheus-client python3-influxdb
@@ -55,4 +51,4 @@ do
 done
 
 # install tools
-apt install cgroups-tools
+apt install cgroup-tools
