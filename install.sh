@@ -9,8 +9,9 @@ cp powerapi.pref /etc/apt/preferences.d/
 apt update
 apt upgrade -y
 
-# install linux kernel `4.18.0-25`
+# install linux kernel `4.18.0-25` and remove `4.19`
 apt install -y linux-image-4.18.0-25-generic linux-modules-4.18.0-25-generic linux-modules-extra-4.18.0-25-generic
+dpkg --purge linux-image-4.19-ovh-xxxx-std-ipv6-64
 modprobe intel_rapl
 
 # build packages
@@ -51,4 +52,4 @@ do
 done
 
 # install tools
-apt install cgroup-tools
+apt install -y cgroup-tools
