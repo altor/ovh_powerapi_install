@@ -15,11 +15,13 @@ sed -i 's/tests_require =//g' setup.cfg
 sed -i 's/pytest >=3.9.2//g' setup.cfg
 sed -i 's/pytest-asyncio >=0.14.0//g' setup.cfg
 sed -i 's/mock >=2.0//g' setup.cfg
+sed -i 's/requests >=2.0//g' setup.cfg
 
 # remove type hint and change python required version to 3.7
-sed -i 's/ *-> *[[:alnum:]]*Report//g' $(find powerapi/ -name "*.py")
+sed -i 's/python_requires = >= 3\.[0-9]/python_requires = >= 3.6/g' setup.cfg
+sed -i 's/ *-> *[[:alnum:]]*:/:/g' $(find powerapi/ -name "*.py")
 sed -i 's/from __future__ import annotations//g' $(find powerapi/ -name "*.py")
-sed -i 's/python_requires = >= 3\.[0-9]/python_requires = >= 3.7/g' setup.cfg
+sed -i 's/: *[[:alnum:]]* *=/=/g' $(find powerapi/ -name "*.py")
 
 # install build dependencies
 python3 -m pip install .

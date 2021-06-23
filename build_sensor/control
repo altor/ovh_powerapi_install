@@ -5,5 +5,5 @@ Priority: optional
 Architecture: all
 Essential: no
 Maintainer: powerapi@inria.fr
-Depends:
+Depends: libczmq4, libbson-1.0
 Description: Software agent (sensor) for monitoring Hardware Performance Counters on Linux
