@@ -29,7 +29,7 @@ VERSION=$(python3 -c "import os, powerapi; print(powerapi.__version__)")
 
 # create source package 
 python3 setup.py --command-packages=stdeb.command sdist_dsc
-sed -i '/Depends: ${misc:Depends}, ${python3:Depends}/a Suggests: python3-pymongo,python3-prometheus-client,python3-influxdb,python3-influxdb' ./deb_dist/powerapi-$VERSION/debian/control
+sed -i '/Depends: ${misc:Depends}, ${python3:Depends}/a Suggests: python3-pymongo,python3-prometheus-client,python3-influxdb' ./deb_dist/powerapi-$VERSION/debian/control
 # build binary package
 
 cd ./deb_dist/powerapi-$VERSION
