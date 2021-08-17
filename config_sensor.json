@@ -1,0 +1,24 @@
+{
+    "name": "toto",
+    "verbose": true,
+    "frequency": 1000,
+    "output": {
+	"type": "socket",
+	"uri": "127.0.0.1",
+	"port": 8080
+    },
+    "system":{
+	"rapl":{
+	    "events": ["RAPL_ENERGY_PKG"],
+	    "monitoring_type": "MONITOR_ONE_CPU_PER_SOCKET"
+	},
+	"msr": {
+	    "events": ["TSC", "APERF", "MPERF"]
+	}
+    },
+    "container":{
+	"core":{
+	    "events": ["CPU_CLK_THREAD_UNHALTED:REF_P", "CPU_CLK_THREAD_UNHALTED:THREAD_P", "LLC_MISSES", "INSTRUCTIONS_RETIRED"]
+	}
+    }
+}

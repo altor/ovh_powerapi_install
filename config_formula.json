@@ -1,0 +1,33 @@
+{
+    "verbose": true,
+    "stream_mode": true,
+    "input":{
+	"puller":{
+	    "model": "HWPCReport",
+	    "port": 8080,
+	    "type": "socket"
+	}},
+    "output":{
+	"power":{
+	    "type": "prom",
+	    "uri": "ns3173903.ip-51-210-114.eu",
+	    "port": 9000,
+	    "metric_name": "powerapi_energy",
+	    "metric_description": "description",
+	    "model": "PowerReport",
+	    "aggregation_period": 5
+	}},
+    "formula":{
+	"cpu-ratio-base": 22,
+	"cpu-ratio-min": 10,
+	"cpu-ratio-max": 42,
+	"cpu-error-threshold": 2.0,
+	"disable-dram-formula": true,
+	"sensor-reports-frequency": 500
+    },
+    "report_modifier":{
+	"libvirt_mapper":{
+	    "domain_regexp": "/machine/qemu-[0-9]+-(.*)\\.libvirt-qemu",
+	    "uri": ""
+	}}
+}
