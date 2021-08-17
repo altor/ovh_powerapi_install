@@ -1,5 +1,5 @@
 {
-    "name": "toto",
+    "name": "test_sensor",
     "verbose": true,
     "frequency": 1000,
     "output": {
