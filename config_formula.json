@@ -1,6 +1,6 @@
 {
     "verbose": true,
-    "stream_mode": true,
+    "stream": true,
     "input":{
 	"puller":{
 	    "model": "HWPCReport",
